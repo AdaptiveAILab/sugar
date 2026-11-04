@@ -1,0 +1,128 @@
+{
+  "display_item": "Table 2",
+  "model": "S-Edge-Tiny",
+  "parameter_count": 8413,
+  "seeds": [
+    1,
+    10,
+    20,
+    25,
+    42
+  ],
+  "runs_per_configuration": 5,
+  "total_runs": 45,
+  "accuracy_unit": "percent",
+  "standard_deviation_ddof": 1,
+  "checkpoint_selection": "lowest_validation_loss",
+  "checkpoint_epoch_indexing": "one_based",
+  "epochs": 40,
+  "batch_size": 16,
+  "optimizer_steps": 212120,
+  "data_loader_workers": 16,
+  "activations": {
+    "forward": "ReLU for every configuration",
+    "backward": "ReLU or the selected SUGAR derivative"
+  },
+  "optimizer": {
+    "name": "AdamW",
+    "ssm_parameter_name_markers": [
+      "B",
+      "C",
+      "Lambda",
+      "log_step"
+    ],
+    "nominal_group_learning_rates": [
+      0.002,
+      0.008
+    ],
+    "group_weight_decays": [
+      0.0,
+      0.04
+    ],
+    "betas": [
+      0.9,
+      0.999
+    ],
+    "eps": 1e-08
+  },
+  "scheduler": {
+    "name": "CosineAnnealingWarmupRestarts",
+    "first_cycle_steps": 212120,
+    "cycle_mult": 1.0,
+    "max_lr": 0.008,
+    "min_lr": 0.0,
+    "warmup_steps": 100,
+    "gamma": 1.0,
+    "parameter_groups": "The scalar schedule sets the same learning rate for both parameter groups."
+  },
+  "decoder_regularization": "0.1 * sqrt(mean(off_diagonal(W @ W.T)^2))",
+  "batch_normalization": true,
+  "dropout": 0.0,
+  "augmentation": "none",
+  "dataset": {
+    "name": "Speech Commands",
+    "version": "0.02",
+    "classes": 35,
+    "sample_rate_hz": 16000,
+    "url": "https://download.tensorflow.org/data/speech_commands_v0.02.tar.gz",
+    "archive_sha256": "af14739ee7dc311471de98f5f9d2c9191b18aedfe957f4a6ff791c709868ff58",
+    "split_counts": {
+      "training": 84843,
+      "validation": 9981,
+      "testing": 11005
+    },
+    "ordering_sha256": {
+      "training": "4b089a0de095eec24d747d42c8c0d5ae3a90ca3130c625f77f653ef655b8e6ae",
+      "testing": "128df49699a6aecb84d916465d52c08c1a94042eed8b01bdd9268c8cd06191fc",
+      "validation": "ff4df7307bd5db78ee9bdf3a59febcfc7391c44006a59550093508683bd8f5b8"
+    },
+    "normalization_mean": -8.520383562427014e-05,
+    "normalization_sample_sd": 0.0860036239027977,
+    "normalization_eps": 1e-05,
+    "padded_sequence_samples": 16000
+  },
+  "runtime": {
+    "python": "3.9.21",
+    "cuda_build": "12.8",
+    "packages": {
+      "torch": "2.8.0+cu128",
+      "torchaudio": "2.8.0+cu128",
+      "numpy": "2.0.2",
+      "scipy": "1.13.1",
+      "pandas": "2.2.3",
+      "PyYAML": "6.0.2",
+      "tqdm": "4.68.3",
+      "soundfile": "0.13.1",
+      "psutil": "6.1.0"
+    }
+  },
+  "cpu_thread_counts": [
+    16,
+    128
+  ],
+  "gpu_models": [
+    "NVIDIA A100 80GB PCIe",
+    "NVIDIA A100-SXM4-80GB"
+  ],
+  "initialization": {
+    "files": {
+      "initialization/seed_1.pt": "24eff60e4f4cb8b54715d1fb50afe0c2eb3cf687e817af1cf6ea4d0a02b62fa8",
+      "initialization/seed_10.pt": "80f6e10f26dcecd00c90cefb0ca5e9006bb8df27002b12fa83755afa14841c52",
+      "initialization/seed_20.pt": "91461467be197427b64744430d673b6e3facda8457e67d4d4600292a8026b486",
+      "initialization/seed_25.pt": "6ae61fd63e304195f02049b5b208b424750e1648e1f8c4167ef4790c81692b72",
+      "initialization/seed_42.pt": "e287c4474353c98005b0a4eb139313ffcf80d22a160d7b416a767d7f257cd446"
+    },
+    "all_45_saved_initial_states_bitwise_verified": true,
+    "provenance": "Archived per-seed BN-enabled initial states, verified identical across all 45 runs. ReLU states also match the archived ReLU initialization. Leaky alpha 0.01 seeds 10 and 20 use the matching same-seed B-SiLU archive because their own initial checkpoints were unavailable."
+  },
+  "literature_reference": {
+    "method": "S-Edge",
+    "best_accuracy_percent": 90.5,
+    "reported_runs": 1,
+    "doi": "10.1007/s10994-025-06807-z",
+    "source": "Published result; not one of the 45 observations."
+  },
+  "original_training_source_tree_sha256": "07498123ac5814865e975c4ace37bcf96621086793e5231ee73eb0b574a6d657",
+  "table2_runs_sha256": "06c2b556f0755947f0eff7024b1c210e1c2ed564efb033aeaa9e49dd21f628a6",
+  "reproducibility": "Provided initial states fix the starting weights. Exact training trajectories can vary with hardware, numerical libraries and thread settings. Four runs used 128 CPU threads; the others used 16. Eight-update cross-profile model-state checks passed, but full-trajectory bitwise equality was not established."
+}

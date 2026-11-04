@@ -1,0 +1,27 @@
+# Local Python, editor and OS files
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.ipynb_checkpoints/
+.vector_cache/
+.idea/
+.vscode/
+.env
+.DS_Store
+Thumbs.db
+
+# Generated experiment results and weights
+output/
+outputs/
+results/
+logs/
+models_retrained/
+models_sweep/
+analyze_freq_results/
+
+# Downloaded data; retain required S-Edge initialization metadata
+**/data/*
+/experiments/applications/sedge_tiny/datasets/
+!/experiments/applications/sedge_tiny/data/provenance.json
+!/experiments/applications/sedge_tiny/data/initialization/

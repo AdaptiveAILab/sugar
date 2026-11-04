@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sugar-sedge"
+version = "0.1.0"
+description = "SUGAR experiments for S-Edge-Tiny on Speech Commands."
+requires-python = ">=3.9,<3.13"
+dependencies = [
+    "torch==2.8.0",
+    "torchaudio==2.8.0",
+    "numpy==2.0.2",
+    "soundfile==0.13.1",
+    "tqdm==4.68.3",
+]
+
+[tool.setuptools.packages.find]
+include = ["sedge*"]
+
+[tool.setuptools.data-files]
+"share/sugar-sedge/data" = ["data/provenance.json"]
+"share/sugar-sedge/data/initialization" = ["data/initialization/seed_*.pt"]
+"share/sugar-sedge/licenses" = ["licenses/*.txt", "THIRD_PARTY.md"]

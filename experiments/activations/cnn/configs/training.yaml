@@ -1,0 +1,20 @@
+data_dir: ./data
+results_dir: ./results
+batch_size: 128
+valid_size: 0.1
+num_workers: 4
+learning_rate: 0.001
+optimizer_name: SGD
+milestones: [100]
+analyze_freq: 10000
+num_epochs:
+  cifar100:
+    vgg16: 50
+    resnet18: 100
+fgi_types: [relu, leaky, selu, elu, gelu, swish, mish, param_swish, nelu]
+datasets: [cifar100]
+models: [vgg16, resnet18]
+seeds: [1, 10, 20, 25, 42]
+alphas: [0.01, 0.05, 0.1]
+gpu_cycle: [0, 1]
+max_parallel_per_gpu: 2
